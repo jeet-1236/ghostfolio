@@ -41,8 +41,8 @@ export function adjustActivityBySplits(
   return {
     ...activity,
     quantity: new Big(activity.quantity)
-      .mul(numerator)
-      .div(denominator)
+      .mul(denominator)
+      .div(numerator)
       .toNumber(),
     unitPrice: new Big(activity.unitPrice)
       .mul(denominator)
