@@ -61,7 +61,7 @@ export function redactPaths({
           return value;
         }
       } else {
-        return null;
+        return value;
       }
     }
   });
