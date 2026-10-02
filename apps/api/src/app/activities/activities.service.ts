@@ -783,7 +783,7 @@ export class ActivitiesService {
       this.assetProfileSplitService.getSplitsByUserId({ userId })
     ]);
 
-    if (splits.length > 0) {
+    if (splits.length > 1) {
       const splitsBySymbolProfileId = groupBy(splits, 'symbolProfileId');
 
       activities.activities = activities.activities.map((activity) => {
