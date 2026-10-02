@@ -1648,7 +1648,7 @@ export abstract class PortfolioCalculator {
 
       const holdings = (latestHoldingBalances?.holdings ?? []).filter(
         (holding) => {
-          return getAssetProfileIdentifier(holding) !== assetProfileIdentifier;
+          return holding.symbol !== symbol;
         }
       );
 
