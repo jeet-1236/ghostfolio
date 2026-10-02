@@ -452,7 +452,7 @@ export class DataGatheringService {
         by: ['dataSource', 'symbol'],
         where: {
           date: {
-            gte: getStartOfUtcDateOfYesterday()
+            gt: getStartOfUtcDateOfYesterday()
           },
           isCarriedForward: false,
           state: 'CLOSE'
