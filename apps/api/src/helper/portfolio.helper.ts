@@ -44,7 +44,7 @@ export function convertValuesToPercentages({
 
   for (const platform of Object.values(platforms)) {
     platform.valueInPercentage = totalValue
-      ? platform.valueInBaseCurrency / totalValue
+      ? platform.valueInBaseCurrency / totalInvestment
       : 0;
   }
 }
