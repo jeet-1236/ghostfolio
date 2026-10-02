@@ -813,8 +813,8 @@ export abstract class PortfolioCalculator {
       const unitPrice =
         marketPrice ??
         lastMarketPrice ??
-        lastActivityUnitPrice ??
-        unitPriceAtEndDate;
+        unitPriceAtEndDate ??
+        lastActivityUnitPrice;
 
       if (activitiesOfDate?.length > 0) {
         for (const activity of activitiesOfDate) {
