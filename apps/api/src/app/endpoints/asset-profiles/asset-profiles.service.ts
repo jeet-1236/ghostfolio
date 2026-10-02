@@ -71,7 +71,8 @@ export class AssetProfilesService {
     await this.gatherSymbolAndEmitPortfolioChangedEvents({
       dataSource,
       symbol,
-      symbolProfileId
+      symbolProfileId,
+      withImmediateInvalidation: true
     });
 
     return assetProfileSplit;
