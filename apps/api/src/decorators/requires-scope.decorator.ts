@@ -19,8 +19,8 @@ export function RequiresScope(...requiredScopes: Scope[]) {
     UseGuards(
       AuthGuard('jwt'),
       HasPermissionGuard,
-      ImpersonationGuard,
-      ScopeGuard
+      ScopeGuard,
+      ImpersonationGuard
     )
   );
 }
