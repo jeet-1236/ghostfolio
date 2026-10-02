@@ -47,8 +47,8 @@ export class ImpersonationGuard implements CanActivate {
       // client can remove the stale identifier instead of failing every request
       throw new HttpException(
         {
-          error: getReasonPhrase(StatusCodes.FORBIDDEN),
-          message: HTTP_RESPONSE_MESSAGE_IMPERSONATION_UNRESOLVED
+          error: HTTP_RESPONSE_MESSAGE_IMPERSONATION_UNRESOLVED,
+          message: getReasonPhrase(StatusCodes.FORBIDDEN)
         },
         StatusCodes.FORBIDDEN
       );
