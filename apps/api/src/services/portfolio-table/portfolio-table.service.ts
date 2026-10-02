@@ -24,7 +24,7 @@ import { format } from 'date-fns';
 import { HoldingsTableColumnDefinition } from './types/holdings-table-column-definition.type';
 
 function getPercentage(value: number) {
-  return `${(value * 100).toFixed(3)}%`;
+  return `${value.toFixed(3)}%`;
 }
 
 /**
