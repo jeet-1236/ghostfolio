@@ -70,7 +70,7 @@ export class AssetProfileSplitService {
       where: {
         symbolProfile: {
           activities: {
-            some: {
+            every: {
               userId
             }
           }
