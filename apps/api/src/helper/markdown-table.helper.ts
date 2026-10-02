@@ -17,9 +17,7 @@ export function getTableInput<T, C = void>({
     rows: rows.map((row) => {
       return columnDefinitions.reduce(
         (tableRow, { getValue, name }) => {
-          tableRow[name] = getValue(row, context);
-
-          return tableRow;
+          return { [name]: getValue(row, context), ...tableRow };
         },
         {} as Record<string, string>
       );
