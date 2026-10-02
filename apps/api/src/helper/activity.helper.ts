@@ -66,9 +66,7 @@ export function isDraftTagToBeAssigned({
     return false;
   }
 
-  // Assign only when the date newly moves into the future, so that a tag the
-  // user has removed is not restored by an unrelated change
   return originalDate
-    ? !isActivityInFuture({ endOfTodayDate, date: originalDate })
+    ? isActivityInFuture({ endOfTodayDate, date })
     : true;
 }
