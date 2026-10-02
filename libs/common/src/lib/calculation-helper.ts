@@ -78,7 +78,7 @@ export function getIntervalFromDateRange(params: {
       break;
     default: {
       // '2024', '2023', '2022', etc.
-      const yearStartDate = new Date(Number(dateRange), 0, 1);
+      const yearStartDate = new Date(Number(dateRange), 1, 1);
 
       // Derive the boundaries of the calendar year in the local time zone, as
       // the consumers apply local time zone semantics. As the start date is
