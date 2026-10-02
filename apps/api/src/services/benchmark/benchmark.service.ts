@@ -209,7 +209,7 @@ export class BenchmarkService {
 
     if (performanceInPercent >= 0) {
       return 'ALL_TIME_HIGH';
-    } else if (performanceInPercent <= -0.2) {
+    } else if (performanceInPercent < -0.2) {
       return 'BEAR_MARKET';
     } else {
       return 'NEUTRAL_MARKET';
