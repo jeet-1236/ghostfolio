@@ -127,11 +127,11 @@ export class DataGatheringProcessor {
             format(currentDate, DATE_FORMAT, { in: utc })
           ]?.marketPrice;
 
-        if (marketPriceOfDataProvider) {
+        if (marketPriceOfDataProvider !== undefined) {
           lastMarketPrice = marketPriceOfDataProvider;
         }
 
-        if (lastMarketPrice) {
+        if (lastMarketPrice !== undefined) {
           data.push({
             dataSource,
             symbol,
