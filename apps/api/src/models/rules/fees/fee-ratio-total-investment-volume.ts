@@ -35,7 +35,7 @@ export class FeeRatioTotalInvestmentVolume extends Rule<Settings> {
 
   public evaluate(ruleSettings: Settings) {
     const feeRatio = this.totalInvestmentVolumeInBaseCurrency
-      ? this.fees / this.totalInvestmentVolumeInBaseCurrency
+      ? this.fees / (this.totalInvestmentVolumeInBaseCurrency - this.fees)
       : 0;
 
     if (feeRatio > ruleSettings.thresholdMax) {
