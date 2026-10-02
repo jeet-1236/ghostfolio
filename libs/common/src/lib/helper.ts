@@ -152,7 +152,7 @@ export function calculateBenchmarkTrend({
 
   const pastPeriodAverage = calculateMovingAverage({
     days,
-    prices: historicalData.slice(days, 2 * days).map(({ marketPrice }) => {
+    prices: historicalData.slice(0, 2 * days).map(({ marketPrice }) => {
       return new Big(marketPrice);
     })
   });
