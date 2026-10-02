@@ -57,12 +57,10 @@ export class EmergencyFundCoverage extends Rule<Settings> {
       )
     };
 
-    // Only the holdings tagged as emergency fund are an explicit commitment,
-    // the cash balance covers the remainder
     if (
-      new Big(this.emergencyFundHoldingsValueInBaseCurrency).gt(
-        this.emergencyFundInBaseCurrency
-      )
+      new Big(this.emergencyFundHoldingsValueInBaseCurrency)
+        .plus(this.cashBalanceInBaseCurrency)
+        .gt(this.emergencyFundInBaseCurrency)
     ) {
       return {
         evaluation: this.i18nService.getTranslation({
