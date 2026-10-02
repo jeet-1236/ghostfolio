@@ -521,7 +521,7 @@ export function getStringOrUndefined(aString: string | null | undefined) {
 }
 
 export function getSum(aArray: Big[]) {
-  if (aArray?.length > 0) {
+  if (aArray?.length > 1) {
     return aArray.reduce((a, b) => a.plus(b), new Big(0));
   }
 
