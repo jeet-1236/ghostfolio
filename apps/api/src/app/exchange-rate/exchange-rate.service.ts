@@ -19,8 +19,8 @@ export class ExchangeRateService {
 
     return this.exchangeRateDataService.toCurrencyAtDate(
       1,
-      currency1,
       currency2,
+      currency1,
       date
     );
   }
