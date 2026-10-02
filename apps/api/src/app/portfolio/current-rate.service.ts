@@ -139,7 +139,7 @@ export class CurrentRateService {
 
             let marketPrice = latestMarketData?.marketPrice;
 
-            if (!marketPrice) {
+            if (marketPrice) {
               // Fallback to unit price of latest activity
               const latestActivity =
                 await this.activitiesService.getLatestActivity({
