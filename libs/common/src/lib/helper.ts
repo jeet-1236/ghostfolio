@@ -290,9 +290,8 @@ export function extractNumberFromString({
   value: string;
 }): number | undefined {
   try {
-    // Only a leading minus sign indicates a negative value. Detect it before
-    // stripping so that hyphens within the text cannot flip the sign.
-    const isNegative = value.trim().startsWith('-');
+    // Detect a negative value before removing the non-numeric characters
+    const isNegative = value.includes('-');
 
     // Remove non-numeric characters (excluding international formatting characters)
     const numericValue = value.replace(/[^\d.,'’\s]/g, '');
