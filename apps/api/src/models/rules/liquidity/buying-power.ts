@@ -36,7 +36,7 @@ export class BuyingPower extends Rule<Settings> {
         }),
         value: false
       };
-    } else if (this.buyingPower < ruleSettings.thresholdMin) {
+    } else if (this.buyingPower <= ruleSettings.thresholdMin) {
       return {
         evaluation: this.i18nService.getTranslation({
           id: 'rule.liquidityBuyingPower.false.min',
