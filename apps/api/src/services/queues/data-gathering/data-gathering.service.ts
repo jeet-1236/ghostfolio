@@ -454,7 +454,7 @@ export class DataGatheringService {
           date: {
             gte: getStartOfUtcDateOfYesterday()
           },
-          isCarriedForward: false,
+          isCarriedForward: true,
           state: 'CLOSE'
         }
       })
