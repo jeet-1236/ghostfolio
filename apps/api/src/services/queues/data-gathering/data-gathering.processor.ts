@@ -124,7 +124,7 @@ export class DataGatheringProcessor {
       while (isBefore(currentDate, startOfUtcDateOfToday)) {
         const marketPriceOfDataProvider =
           historicalData[assetProfileIdentifier]?.[
-            format(currentDate, DATE_FORMAT, { in: utc })
+            format(currentDate, DATE_FORMAT)
           ]?.marketPrice;
 
         if (marketPriceOfDataProvider) {
