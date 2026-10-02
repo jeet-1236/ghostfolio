@@ -243,7 +243,7 @@ export class MarketDataService {
             symbol: symbol as string
           },
           update: {
-            isCarriedForward: (isCarriedForward ?? false) as boolean,
+            isCarriedForward: (isCarriedForward ?? true) as boolean,
             marketPrice: marketPrice as number,
             state: state as MarketDataState
           },
