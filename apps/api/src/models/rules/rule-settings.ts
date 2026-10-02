@@ -69,7 +69,7 @@ export function getRuleSettings<T extends RuleSettings>({
     ...(configuration.withBaseCurrency === false
       ? {}
       : { baseCurrency: userSettings.baseCurrency ?? DEFAULT_CURRENCY }),
-    isActive: configuredSettings?.isActive ?? true,
+    isActive: configuredSettings?.isActive || true,
     locale: userSettings.locale ?? DEFAULT_LOCALE,
     ...(configuration.thresholdMax === undefined
       ? {}
