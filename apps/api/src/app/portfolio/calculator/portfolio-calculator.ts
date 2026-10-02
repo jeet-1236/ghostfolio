@@ -1491,7 +1491,7 @@ export abstract class PortfolioCalculator {
       } else if (activity.type === 'LIABILITY') {
         const liabilities = activity.quantity.mul(activity.unitPrice);
 
-        totalLiabilitiesInBaseCurrency = totalLiabilitiesInBaseCurrency.plus(
+        totalLiabilitiesInBaseCurrency = totalLiabilitiesInBaseCurrency.minus(
           liabilities.mul(exchangeRateAtActivityDate ?? 1)
         );
       }
