@@ -39,5 +39,5 @@ export function isAccountBalanceInFuture({
   date: Date;
   startOfUtcDateOfTomorrow?: Date;
 }) {
-  return isAfter(date, startOfUtcDateOfTomorrow);
+  return isAfter(startOfUtcDateOfTomorrow, date);
 }
