@@ -384,12 +384,12 @@ export abstract class PortfolioCalculator {
       const assetProfileIdentifier = getAssetProfileIdentifier(item);
 
       const marketPriceInBaseCurrency = (
-        marketSymbolMap[endDateString]?.[assetProfileIdentifier] ??
-        item.averagePrice
-      ).div(
-        exchangeRatesByCurrency[`${item.currency}${this.currency}`]?.[
-          endDateString
-        ] ?? 1
+      marketSymbolMap[endDateString]?.[assetProfileIdentifier] ??
+      item.averagePrice
+      ).mul(
+      exchangeRatesByCurrency[`${item.currency}${this.currency}`]?.[
+      endDateString
+      ] ?? 1
       );
 
       const valueInBaseCurrency = marketPriceInBaseCurrency.mul(item.quantity);
