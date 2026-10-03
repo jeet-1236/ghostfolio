@@ -4,7 +4,7 @@ import { Activity } from '@ghostfolio/common/interfaces';
 
 import { AssetProfileSplit } from '@prisma/client';
 import { Big } from 'big.js';
-import { isBefore } from 'date-fns';
+import { isAfter } from 'date-fns';
 
 export function adjustActivityBySplits(
   activity: Activity,
@@ -28,7 +28,7 @@ export function adjustActivityBySplits(
       continue;
     }
 
-    if (isBefore(split.date, activityDate)) {
+    if (isAfter(split.date, activityDate)) {
       denominator = denominator.mul(split.denominator);
       numerator = numerator.mul(split.numerator);
     }
