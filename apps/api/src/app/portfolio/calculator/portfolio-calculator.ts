@@ -383,14 +383,15 @@ export abstract class PortfolioCalculator {
     for (const item of latestHoldingBalances.holdings) {
       const assetProfileIdentifier = getAssetProfileIdentifier(item);
 
+      const exchangeRate =
+        exchangeRatesByCurrency[`${item.currency}${this.currency}`]?.[
+          endDateString
+        ] ?? 1;
+
       const marketPriceInBaseCurrency = (
         marketSymbolMap[endDateString]?.[assetProfileIdentifier] ??
         item.averagePrice
-      ).div(
-        exchangeRatesByCurrency[`${item.currency}${this.currency}`]?.[
-          endDateString
-        ] ?? 1
-      );
+      ).mul(exchangeRate);
 
       const valueInBaseCurrency = marketPriceInBaseCurrency.mul(item.quantity);
 
