@@ -19,6 +19,7 @@ import { z } from 'zod';
 
 const SYMBOL_PARAMETER = z
   .string()
+  .trim()
   .min(1)
   .max(SYMBOL_MAXIMUM_LENGTH)
   .describe('The symbol of the asset profile');
@@ -84,7 +85,7 @@ export const GET_ACTIVITIES_PARAMETERS = z.object({
     .min(1)
     .max(MCP_MAX_ACTIVITIES)
     .default(MCP_MAX_ACTIVITIES)
-    .describe(`The number of activities to get, at most ${MCP_MAX_ACTIVITIES}`)
+    .describe(`The amount of activities to get, at most ${MCP_MAX_ACTIVITIES}`)
 });
 
 export const GET_PERFORMANCE_PARAMETERS = z.object({
