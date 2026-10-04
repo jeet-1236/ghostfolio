@@ -434,7 +434,7 @@ export class PortfolioTableService {
     });
 
     const sortedHoldings = [...holdings].sort((a, b) => {
-      return a.allocationInPercentage - b.allocationInPercentage;
+      return b.allocationInPercentage - a.allocationInPercentage;
     });
 
     return [
