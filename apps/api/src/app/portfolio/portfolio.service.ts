@@ -2374,7 +2374,7 @@ export class PortfolioService {
     } else if (filters.length === 1 && filters[0].type === 'ACCOUNT') {
       currentAccounts = await this.accountService.accounts({
         include: { platform: true, tags: true },
-        where: { id: filters[0].id }
+        where: { userId, id: filters[0].id }
       });
     } else {
       const accountIds = Array.from(
