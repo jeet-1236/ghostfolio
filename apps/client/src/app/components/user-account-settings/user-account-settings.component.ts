@@ -48,7 +48,7 @@ import {
   MatSlideToggleModule
 } from '@angular/material/slide-toggle';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { IonIcon } from '@ionic/angular/standalone';
 import { format, parseISO } from 'date-fns';
 import { addIcons } from 'ionicons';
@@ -137,6 +137,7 @@ export class GfUserAccountSettingsComponent implements OnInit {
   private readonly notificationService = inject(NotificationService);
   private readonly settingsStorageService = inject(SettingsStorageService);
   private readonly snackBar = inject(MatSnackBar);
+  private readonly router = inject(Router);
   private readonly userService = inject(UserService);
   private readonly webAuthnService = inject(WebAuthnService);
 
@@ -447,7 +448,11 @@ export class GfUserAccountSettingsComponent implements OnInit {
   private updateBaseCurrencyFormState() {
     // The base currency belongs to the impersonated user while a change would be
     // applied to the authenticated user
-    if (!this.hasImpersonationId && this.hasPermissionToUpdateUserSettings) {
+    if (
+      !this.hasImpersonationId &&
+      this.hasPermissionToUpdateUserSettings &&
+      !this.router.url.includes('shared-portfolio')
+    ) {
       this.baseCurrencyForm.enable({ emitEvent: false });
     } else {
       this.baseCurrencyForm.disable({ emitEvent: false });
