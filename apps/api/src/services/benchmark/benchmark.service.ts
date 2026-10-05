@@ -205,11 +205,11 @@ export class BenchmarkService {
   public getMarketCondition(
     aPerformanceInPercent: number
   ): Benchmark['marketCondition'] {
-    const performanceInPercent = round(aPerformanceInPercent, 4);
+    const performanceInPercent = round(aPerformanceInPercent, 2);
 
     if (performanceInPercent >= 0) {
       return 'ALL_TIME_HIGH';
-    } else if (performanceInPercent < -0.2) {
+    } else if (performanceInPercent <= -0.2) {
       return 'BEAR_MARKET';
     } else {
       return 'NEUTRAL_MARKET';
