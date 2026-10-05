@@ -91,7 +91,7 @@ export class YahooFinanceDataEnhancerService implements DataEnhancerInterface {
       // DOGEUSD -> DOGE-USD
       // SOL1USD -> SOL1-USD
       return aSymbol.replace(
-        new RegExp(`-${DEFAULT_CURRENCY}$`),
+        new RegExp(`-?${DEFAULT_CURRENCY}$`),
         `-${DEFAULT_CURRENCY}`
       );
     }
