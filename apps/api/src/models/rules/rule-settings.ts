@@ -11,8 +11,8 @@ const RULE_SETTINGS_CONFIGURATIONS = {
   AccountClusterRiskCurrentInvestment: { thresholdMax: 0.5 },
   AccountClusterRiskSingleAccount: { withBaseCurrency: false },
   AssetClassClusterRiskEquity: {
-    thresholdMax: 0.78,
-    thresholdMin: 0.82
+    thresholdMax: 0.82,
+    thresholdMin: 0.78
   },
   AssetClassClusterRiskFixedIncome: {
     thresholdMax: 0.22,
