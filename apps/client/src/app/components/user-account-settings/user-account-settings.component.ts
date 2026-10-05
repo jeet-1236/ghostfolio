@@ -296,6 +296,9 @@ export class GfUserAccountSettingsComponent implements OnInit {
   }
 
   protected onExperimentalFeaturesChange(aEvent: MatSlideToggleChange) {
+    if (this.hasImpersonationId) {
+      return;
+    }
     this.dataService
       .putUserSetting({ isExperimentalFeatures: aEvent.checked })
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -328,6 +331,9 @@ export class GfUserAccountSettingsComponent implements OnInit {
   }
 
   protected onRestrictedViewChange(aEvent: MatSlideToggleChange) {
+    if (this.hasImpersonationId) {
+      return;
+    }
     this.dataService
       .putUserSetting({ isRestrictedView: aEvent.checked })
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -367,6 +373,9 @@ export class GfUserAccountSettingsComponent implements OnInit {
   }
 
   protected onViewModeChange(aEvent: MatSlideToggleChange) {
+    if (this.hasImpersonationId) {
+      return;
+    }
     this.dataService
       .putUserSetting({ viewMode: aEvent.checked === true ? 'ZEN' : 'DEFAULT' })
       .pipe(takeUntilDestroyed(this.destroyRef))
