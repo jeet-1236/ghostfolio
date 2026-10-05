@@ -178,7 +178,10 @@ export class UserController {
   @UseInterceptors(TransformDataSourceInResponseInterceptor)
   public async updateUserSetting(
     @Body() data: UpdateUserSettingDto,
-    @Impersonation() { isActive }: ImpersonationContext
+    @Impersonation() {
+      isActive,
+      userId: impersonatedUserId
+    }: ImpersonationContext
   ) {
     if (
       isActive &&
@@ -187,8 +190,8 @@ export class UserController {
       })
     ) {
       // While impersonating, only the settings which stay with the
-      // authenticated user can be changed, as the update is always written
-      // back to the authenticated user
+      // authenticated user can be changed, as the update is now written back
+      // to the impersonated user when impersonation is active.
       throw new HttpException(
         getReasonPhrase(StatusCodes.FORBIDDEN),
         StatusCodes.FORBIDDEN
@@ -236,7 +239,7 @@ export class UserController {
     return this.userService.updateUserSetting({
       emitPortfolioChangedEvent,
       userSettings,
-      userId: this.request.user.id
+      userId: isActive ? impersonatedUserId : this.request.user.id
     });
   }
 
