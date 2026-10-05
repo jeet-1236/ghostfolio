@@ -46,13 +46,21 @@ export class ImpersonationService {
       await this.validateImpersonation({ impersonationId, types, user });
 
     if (!impersonatedUserId) {
-      return {
+      // Build the base result without scopes first
+      const baseResult = {
         authenticatedUserSubscription: user?.subscription,
         isActive: false,
-        scopes: getScopesOfOwnAccess(),
         userId: user?.id,
         userSettings: user?.settings?.settings ?? {},
         userSubscription: user?.subscription
+      };
+
+      // Ensure a scopes field is always present so that downstream guards
+      // (e.g., ScopeGuard) have the required information even when no
+      // impersonation identifier is supplied.
+      return {
+        ...baseResult,
+        scopes: getScopesOfOwnAccess()
       };
     }
 
