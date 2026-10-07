@@ -43,7 +43,7 @@ export class ImpersonationWriteGuard implements CanActivate {
       return true;
     }
 
-    if (!request.headers?.[HEADER_KEY_IMPERSONATION]) {
+    if (!request.headers?.[HEADER_KEY_IMPERSONATION.toLowerCase()]) {
       return true;
     }
 
