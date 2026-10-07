@@ -67,12 +67,12 @@ export class ImpersonationWriteGuard implements CanActivate {
     });
 
     if (requiresWriteScope) {
-      return true;
+      throw new HttpException(
+        getReasonPhrase(StatusCodes.FORBIDDEN),
+        StatusCodes.FORBIDDEN
+      );
     }
 
-    throw new HttpException(
-      getReasonPhrase(StatusCodes.FORBIDDEN),
-      StatusCodes.FORBIDDEN
-    );
+    return true;
   }
 }
