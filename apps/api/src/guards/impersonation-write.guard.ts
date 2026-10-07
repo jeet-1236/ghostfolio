@@ -43,7 +43,13 @@ export class ImpersonationWriteGuard implements CanActivate {
       return true;
     }
 
-    if (!request.headers?.[HEADER_KEY_IMPERSONATION]) {
+    // The incoming request headers are lower‑cased by most HTTP servers.
+    // Perform a case‑insensitive lookup for the impersonation header.
+    const impersonationHeader =
+      request.headers?.[HEADER_KEY_IMPERSONATION] ??
+      request.headers?.[HEADER_KEY_IMPERSONATION.toLowerCase()];
+
+    if (!impersonationHeader) {
       return true;
     }
 
