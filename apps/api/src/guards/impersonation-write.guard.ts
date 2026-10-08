@@ -43,7 +43,12 @@ export class ImpersonationWriteGuard implements CanActivate {
       return true;
     }
 
-    if (!request.headers?.[HEADER_KEY_IMPERSONATION]) {
+    // Header lookup should be case‑insensitive.
+    const impersonationHeader =
+      request.headers?.[HEADER_KEY_IMPERSONATION] ??
+      request.headers?.[HEADER_KEY_IMPERSONATION.toLowerCase()];
+
+    if (!impersonationHeader) {
       return true;
     }
 
