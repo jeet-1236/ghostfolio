@@ -14,9 +14,13 @@ export function getLanguageCodeFromHeader(
 export function getSupportedLanguageCode(
   languageCode?: string
 ): SupportedLanguageCode {
-  const languageCodeToUse = languageCode?.split(
-    '-'
-  )[0] as SupportedLanguageCode;
+  if (!languageCode) {
+    return DEFAULT_LANGUAGE_CODE;
+  }
+
+  const languageCodeToUse = languageCode
+    .split('-')[0]
+    .toLowerCase() as SupportedLanguageCode;
 
   return SUPPORTED_LANGUAGE_CODES.includes(languageCodeToUse)
     ? languageCodeToUse
