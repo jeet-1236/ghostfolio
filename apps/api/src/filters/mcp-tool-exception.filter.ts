@@ -40,14 +40,10 @@ export class McpToolExceptionFilter implements RpcExceptionFilter {
     // The message of an exception can carry internals, for example the
     // property names of a data transfer object of a failed validation, hence
     // the reason phrase of the status is passed on instead
-    return throwError(() => {
-      return {
-        message:
-          (exception as Error)?.message ||
-          this.getReasonPhraseOfStatus(statusCode),
-        status: 'error'
-      };
-    });
+    return throwError(() => ({
+      message: this.getReasonPhraseOfStatus(statusCode),
+      status: 'error'
+    }));
   }
 
   private getReasonPhraseOfStatus(statusCode: number) {
