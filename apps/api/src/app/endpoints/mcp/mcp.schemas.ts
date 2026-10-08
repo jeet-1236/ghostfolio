@@ -19,6 +19,7 @@ import { z } from 'zod';
 
 const SYMBOL_PARAMETER = z
   .string()
+  .trim()
   .min(1)
   .max(SYMBOL_MAXIMUM_LENGTH)
   .describe('The symbol of the asset profile');
