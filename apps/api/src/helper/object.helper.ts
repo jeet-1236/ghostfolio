@@ -55,14 +55,13 @@ export function redactPaths({
     paths,
     censor: (value) => {
       if (valueMap) {
-        if (valueMap[value]) {
-          return valueMap[value];
-        } else {
-          return value;
-        }
-      } else {
-        return value;
+        // Return the mapped value if it exists, otherwise redact to null
+        return Object.prototype.hasOwnProperty.call(valueMap, value)
+          ? valueMap[value]
+          : null;
       }
+      // Default redaction replaces the value with null
+      return null;
     }
   });
 
