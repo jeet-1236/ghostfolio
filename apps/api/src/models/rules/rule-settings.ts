@@ -61,8 +61,21 @@ export function getRuleSettings<T extends RuleSettings>({
   key: XRayRuleKey;
   userSettings: UserSettings;
 }): T {
-  const configuration: RuleSettingsConfiguration =
+  const originalConfiguration: RuleSettingsConfiguration =
     RULE_SETTINGS_CONFIGURATIONS[key] ?? {};
+
+  // Ensure that thresholdMax is not less than thresholdMin.
+  const configuration: RuleSettingsConfiguration = { ...originalConfiguration };
+  if (
+    configuration.thresholdMax !== undefined &&
+    configuration.thresholdMin !== undefined &&
+    configuration.thresholdMax < configuration.thresholdMin
+  ) {
+    const tmp = configuration.thresholdMax;
+    configuration.thresholdMax = configuration.thresholdMin;
+    configuration.thresholdMin = tmp;
+  }
+
   const configuredSettings = userSettings.xRayRules?.[key];
 
   return {
