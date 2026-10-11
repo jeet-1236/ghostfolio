@@ -42,9 +42,7 @@ export class McpToolExceptionFilter implements RpcExceptionFilter {
     // the reason phrase of the status is passed on instead
     return throwError(() => {
       return {
-        message:
-          (exception as Error)?.message ||
-          this.getReasonPhraseOfStatus(statusCode),
+        message: this.getReasonPhraseOfStatus(statusCode),
         status: 'error'
       };
     });
