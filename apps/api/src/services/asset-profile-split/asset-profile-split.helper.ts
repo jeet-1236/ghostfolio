@@ -40,14 +40,10 @@ export function adjustActivityBySplits(
 
   return {
     ...activity,
-    quantity: new Big(activity.quantity)
-      .mul(denominator)
-      .div(numerator)
-      .toNumber(),
-    unitPrice: new Big(activity.unitPrice)
-      .mul(denominator)
-      .div(numerator)
-      .toNumber(),
+    // Quantity is multiplied by the split factor (numerator/denominator)
+    quantity: new Big(activity.quantity).mul(numerator).div(denominator).toNumber(),
+    // Unit price is divided by the split factor (i.e., multiplied by denominator/numerator)
+    unitPrice: new Big(activity.unitPrice).mul(denominator).div(numerator).toNumber(),
     unitPriceInAssetProfileCurrency: new Big(
       activity.unitPriceInAssetProfileCurrency
     )
