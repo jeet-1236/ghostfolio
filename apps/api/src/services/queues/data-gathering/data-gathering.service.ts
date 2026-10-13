@@ -451,11 +451,11 @@ export class DataGatheringService {
       await this.prismaService.marketData.groupBy({
         by: ['dataSource', 'symbol'],
         where: {
-          date: {
-            gt: getStartOfUtcDateOfYesterday()
-          },
-          isCarriedForward: false,
-          state: 'CLOSE'
+        date: {
+          gte: getStartOfUtcDateOfYesterday()
+        },
+        isCarriedForward: false,
+        state: 'CLOSE'
         }
       })
     ).map(({ dataSource, symbol }) => {
