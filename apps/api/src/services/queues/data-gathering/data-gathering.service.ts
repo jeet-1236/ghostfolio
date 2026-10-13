@@ -445,23 +445,23 @@ export class DataGatheringService {
   }
 
   private async getAssetProfileIdentifiersWithRecentMarketData(): Promise<
-    AssetProfileIdentifier[]
-  > {
-    return (
-      await this.prismaService.marketData.groupBy({
-        by: ['dataSource', 'symbol'],
-        where: {
-          date: {
-            gt: getStartOfUtcDateOfYesterday()
-          },
-          isCarriedForward: false,
-          state: 'CLOSE'
-        }
-      })
-    ).map(({ dataSource, symbol }) => {
-      return { dataSource, symbol };
-    });
-  }
+      AssetProfileIdentifier[]
+    > {
+      return (
+        await this.prismaService.marketData.groupBy({
+          by: ['dataSource', 'symbol'],
+          where: {
+            date: {
+              gte: getStartOfUtcDateOfYesterday()
+            },
+            isCarriedForward: false,
+            state: 'CLOSE'
+          }
+        })
+      ).map(({ dataSource, symbol }) => {
+        return { dataSource, symbol };
+      });
+    }
 
   private getCurrencies7D({
     assetProfileIdentifiersWithRecentMarketData
