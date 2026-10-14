@@ -86,12 +86,10 @@ export class YahooFinanceDataEnhancerService implements DataEnhancerInterface {
         aSymbol.replace(new RegExp(`-${DEFAULT_CURRENCY}$`), DEFAULT_CURRENCY)
       )
     ) {
-      // Add a dash before the last three characters
-      // BTCUSD  -> BTC-USD
-      // DOGEUSD -> DOGE-USD
-      // SOL1USD -> SOL1-USD
+      // Add a dash before the currency suffix for cryptocurrencies
+      // e.g. BTCUSD -> BTC-USD, DOGEUSD -> DOGE-USD, SOL1USD -> SOL1-USD
       return aSymbol.replace(
-        new RegExp(`-${DEFAULT_CURRENCY}$`),
+        new RegExp(`(?<!-)${DEFAULT_CURRENCY}$`),
         `-${DEFAULT_CURRENCY}`
       );
     }
