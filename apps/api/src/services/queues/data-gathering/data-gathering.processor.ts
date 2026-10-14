@@ -96,7 +96,7 @@ export class DataGatheringProcessor {
     const { dataSource, date, force, symbol } = job.data;
 
     try {
-      let currentDate = parseISO(date as unknown as string);
+      let currentDate = getStartOfUtcDate(parseISO(date as unknown as string));
 
       this.logger.log(
         `Historical market data gathering has been started for ${symbol} (${dataSource}) at ${format(
@@ -124,7 +124,7 @@ export class DataGatheringProcessor {
       while (isBefore(currentDate, startOfUtcDateOfToday)) {
         const marketPriceOfDataProvider =
           historicalData[assetProfileIdentifier]?.[
-            format(currentDate, DATE_FORMAT)
+            format(currentDate, DATE_FORMAT, { in: utc })
           ]?.marketPrice;
 
         if (marketPriceOfDataProvider) {
