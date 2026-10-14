@@ -386,7 +386,7 @@ export abstract class PortfolioCalculator {
       const marketPriceInBaseCurrency = (
         marketSymbolMap[endDateString]?.[assetProfileIdentifier] ??
         item.averagePrice
-      ).div(
+      ).mul(
         exchangeRatesByCurrency[`${item.currency}${this.currency}`]?.[
           endDateString
         ] ?? 1
