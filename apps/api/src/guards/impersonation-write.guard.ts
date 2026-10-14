@@ -33,6 +33,7 @@ export class ImpersonationWriteGuard implements CanActivate {
     const request = getRequest<{
       headers?: Record<string, string>;
       method?: string;
+      isImpersonating?: boolean;
     }>(context);
 
     if (!request) {
@@ -43,12 +44,17 @@ export class ImpersonationWriteGuard implements CanActivate {
       return true;
     }
 
-    if (!request.headers?.[HEADER_KEY_IMPERSONATION]) {
+    // Detect impersonation via header (case‑insensitive) or a flag on the request.
+    const impersonationHeader =
+      request.headers?.[HEADER_KEY_IMPERSONATION] ??
+      request.headers?.[HEADER_KEY_IMPERSONATION.toLowerCase()] ??
+      request.isImpersonating;
+
+    if (!impersonationHeader) {
       return true;
     }
 
-    const isAllowedDuringImpersonation =
-      this.reflector.getAllAndOverride<boolean>(
+    const isAllowedDuringImpersonation = this.reflector.getAllAndOverride<boolean>(
         ALLOW_DURING_IMPERSONATION_KEY,
         [context.getHandler(), context.getClass()]
       );
