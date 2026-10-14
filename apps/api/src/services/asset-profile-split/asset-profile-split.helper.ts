@@ -28,7 +28,7 @@ export function adjustActivityBySplits(
       continue;
     }
 
-    if (isBefore(split.date, activityDate)) {
+    if (isBefore(activityDate, split.date)) {
       denominator = denominator.mul(split.denominator);
       numerator = numerator.mul(split.numerator);
     }
