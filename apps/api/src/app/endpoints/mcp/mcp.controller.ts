@@ -122,7 +122,7 @@ export class GhostfolioMcpController {
     return this.mcpService.getWatchlist({ userId });
   }
 
-  @RequiresScopeOfAccess(scopes.activityRead)
+  @RequiresScopeOfAccess(scopes.activityCreate)
   @Tool({
     annotations: {
       destructiveHint: false,
