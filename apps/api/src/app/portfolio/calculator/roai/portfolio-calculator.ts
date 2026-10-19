@@ -60,10 +60,7 @@ export class RoaiPortfolioCalculator extends PortfolioCalculator {
         continue;
       }
 
-      if (
-        currentPosition.feeInBaseCurrency &&
-        currentPosition.includeInHoldings
-      ) {
+      if (currentPosition.feeInBaseCurrency) {
         totalFeesWithCurrencyEffect = totalFeesWithCurrencyEffect.plus(
           currentPosition.feeInBaseCurrency
         );
