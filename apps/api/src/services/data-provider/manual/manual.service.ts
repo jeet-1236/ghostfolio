@@ -156,7 +156,7 @@ export class ManualService implements DataProviderInterface {
         symbols.map((symbol) => {
           return this.prismaService.marketData.findFirst({
             orderBy: {
-              date: 'asc'
+              date: 'desc'
             },
             where: {
               symbol,
