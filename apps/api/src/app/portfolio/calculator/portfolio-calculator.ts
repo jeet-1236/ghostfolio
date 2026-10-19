@@ -534,7 +534,7 @@ export abstract class PortfolioCalculator {
       );
 
       totalLiabilitiesWithCurrencyEffect =
-        totalLiabilitiesWithCurrencyEffect.plus(totalLiabilitiesInBaseCurrency);
+        totalLiabilitiesWithCurrencyEffect.plus(totalLiabilitiesInBaseCurrency.abs());
 
       if (
         (hasErrors ||
