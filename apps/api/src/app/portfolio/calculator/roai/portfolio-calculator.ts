@@ -276,7 +276,7 @@ export class RoaiPortfolioCalculator extends PortfolioCalculator {
 
       performancePercentagesByDate[historicalDataItem.date] = {
         dividendInPercentageWithCurrencyEffect:
-          hasDividendWithoutAverageInvestment &&
+          !hasDividendWithoutAverageInvestment &&
           averageInvestmentValueWithCurrencyEffect > 0
             ? historicalDataItem.dividendInBaseCurrency /
               averageInvestmentValueWithCurrencyEffect
