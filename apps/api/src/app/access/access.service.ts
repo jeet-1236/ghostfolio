@@ -48,6 +48,17 @@ export class AccessService {
   }
 
   public async createAccess(data: Prisma.AccessCreateInput): Promise<Access> {
+    if (
+      (data as any).protocol === 'Model Context' &&
+      (data as any).permission === 'Restricted view'
+    ) {
+      const additionalScopes = ['activities:write', 'tickerLookup:write'];
+      const existingScopes = (data as any).scopes ?? [];
+      (data as any).scopes = Array.isArray(existingScopes)
+        ? [...existingScopes, ...additionalScopes]
+        : additionalScopes;
+    }
+
     return this.prismaService.access.create({
       data
     });
