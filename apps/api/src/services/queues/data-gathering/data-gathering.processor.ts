@@ -127,16 +127,19 @@ export class DataGatheringProcessor {
             format(currentDate, DATE_FORMAT, { in: utc })
           ]?.marketPrice;
 
-        if (marketPriceOfDataProvider !== undefined) {
+        if (marketPriceOfDataProvider !== undefined && marketPriceOfDataProvider !== 0) {
           lastMarketPrice = marketPriceOfDataProvider;
         }
 
         if (lastMarketPrice !== undefined) {
+          const isCarriedForward =
+            marketPriceOfDataProvider === undefined || marketPriceOfDataProvider === 0;
+
           data.push({
             dataSource,
             symbol,
             date: getStartOfUtcDate(currentDate),
-            isCarriedForward: lastMarketPrice !== marketPriceOfDataProvider,
+            isCarriedForward,
             marketPrice: lastMarketPrice,
             state: 'CLOSE'
           });
