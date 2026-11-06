@@ -343,11 +343,14 @@ export class ManualService implements DataProviderInterface {
       }
 
       return extractNumberFromString({
-        locale,
+        locale: locale ?? 'en-US',
         value
       });
     }
 
-    return extractNumberFromString({ locale, value });
+    return extractNumberFromString({
+      locale: locale ?? 'en-US',
+      value
+    });
   }
 }
